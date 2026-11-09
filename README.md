@@ -2,7 +2,7 @@
 
 Four strategies trade side by side, each with its own simulated $10,000 account, using live public prices from
 Kraken. A web dashboard shows how each is doing. A free GitHub Actions job runs them every 15 minutes, so they keep
-going with your PC off. **Every order is simulated.** There's no code anywhere in this project that places real
+going. **Every order is simulated.** There's no code anywhere in this project that places real
 orders or uses exchange API keys.
 
 ## The bots
