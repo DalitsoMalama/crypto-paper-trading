@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper Trading Desk</title>
+<meta name="robots" content="noindex">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f6f7f9; --panel: #ffffff; --text: #16191f; --muted: #667085; --line: #e4e7ec;
+    --up: #0e9f6e; --down: #d92d20; --warn: #b54708; --accent: #2e5bff; --chip: #eef2ff;
+    --s1: #2e5bff; --s2: #e8590c; --s3: #0e9f6e; --s4: #9c36b5; --s5: #1098ad;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115; --panel: #171a21; --text: #e7e9ee; --muted: #98a1b3; --line: #262b36;
+      --up: #3ccf91; --down: #f97066; --warn: #fdb022; --accent: #7a9cff; --chip: #1f2740;
+      --s1: #7a9cff; --s2: #ff922b; --s3: #3ccf91; --s4: #da77f2; --s5: #3bc9db;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 20px 16px 48px; }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 18px; }
+  h1 { font-size: 22px; margin: 0; letter-spacing: -0.01em; }
+  h2 { font-size: 15px; margin: 0 0 10px; }
+  .muted { color: var(--muted); }
+  .badge { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--chip); color: var(--accent); }
+  .badge.warn { background: color-mix(in srgb, var(--warn) 15%, transparent); color: var(--warn); }
+  .badge.bad { background: color-mix(in srgb, var(--down) 15%, transparent); color: var(--down); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .card { cursor: pointer; transition: border-color .15s; }
+  .card:hover, .card.sel { border-color: var(--accent); }
+  .card .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .card .name { font-weight: 650; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+  .ret { font-size: 26px; font-weight: 700; margin: 8px 0 2px; font-variant-numeric: tabular-nums; }
+  .up { color: var(--up); } .down { color: var(--down); }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; margin-top: 10px; font-size: 13px; }
+  .stats span:nth-child(even) { text-align: right; font-variant-numeric: tabular-nums; }
+  .chart-box { position: relative; height: 300px; margin-top: 12px; }
+  section { margin-top: 16px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .tab { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 999px;
+         padding: 5px 12px; font: inherit; cursor: pointer; }
+  .tab.sel { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; }
+  td.wrap-text { white-space: normal; min-width: 260px; }
+  .empty { color: var(--muted); padding: 10px 0; }
+  .two { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 900px) { .two { grid-template-columns: 1fr 1fr; } }
+  .note { font-size: 12px; color: var(--muted); margin-top: 24px; }
+  .err { color: var(--down); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Paper Trading Desk</h1>
+    <span class="badge">PAPER · simulated money</span>
+    <span id="status" class="muted">Loading…</span>
+  </header>
+
+  <div id="cards" class="grid"></div>
+
+  <section class="panel">
+    <h2>Return since start, per bot</h2>
+    <div class="chart-box"><canvas id="chart"></canvas></div>
+  </section>
+
+  <section>
+    <div id="tabs" class="tabs"></div>
+    <div id="detail"></div>
+  </section>
+
+  <p class="note">Every bot trades its own $10,000 paper account using live public prices. No real orders are placed.
+    The page refreshes itself every minute. A short paper record says little; judge the bots over months, and compare
+    them on return <em>and</em> worst drawdown.</p>
+</div>
+
+<script>
+const COLORS = ["--s1", "--s2", "--s3", "--s4", "--s5"].map(v => getComputedStyle(document.documentElement).getPropertyValue(v).trim());
+let selected = null, chart = null, lastData = null, chartSpan = 0;
+
+const fmt = (n, d = 2) => n == null ? "–" : Number(n).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+const pct = (n, d = 2) => n == null ? "–" : (n > 0 ? "+" : "") + fmt(n, d) + "%";
+const cls = n => n > 0 ? "up" : n < 0 ? "down" : "";
+const price = n => n == null ? "–" : Number(n).toPrecision(6).replace(/\.?0+$/, "");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function ago(iso) {
+  if (!iso) return "never";
+  const s = (Date.now() - new Date(iso).getTime()) / 1000;
+  if (s < 90) return "just now";
+  if (s < 5400) return Math.round(s / 60) + " min ago";
+  if (s < 172800) return Math.round(s / 3600) + " h ago";
+  return Math.round(s / 86400) + " days ago";
+}
+const when = iso => iso ? new Date(iso).toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "–";
+
+function botStatus(b) {
+  if (b.halted) return `<span class="badge bad" title="${esc(b.halted)}">halted</span>`;
+  if (b.error) return `<span class="badge warn" title="${esc(b.error)}">data issue</span>`;
+  if (b.daily_blocked) return `<span class="badge warn">daily limit</span>`;
+  return `<span class="badge">${b.positions.length ? b.positions.length + " open" : "in cash"}</span>`;
+}
+
+function renderCards(d) {
+  const ranked = [...d.bots].sort((a, b) => b.return_pct - a.return_pct);
+  document.getElementById("cards").innerHTML = ranked.map(b => {
+    const color = COLORS[d.bots.indexOf(b) % COLORS.length];
+    return `<div class="panel card ${b.id === selected ? "sel" : ""}" data-id="${b.id}">
+      <div class="top"><div class="name"><span class="dot" style="background:${color}"></span>${esc(b.name)}</div>${botStatus(b)}</div>
+      <div class="ret ${cls(b.return_pct)}">${pct(b.return_pct)}</div>
+      <div class="muted">$${fmt(b.equity)} · ${esc(b.timeframe)} · ${b.symbols.length} coins</div>
+      <div class="stats">
+        <span class="muted">Worst drawdown</span><span>${pct(b.max_drawdown_pct)}</span>
+        <span class="muted">Closed trades</span><span>${b.trades_count}</span>
+        <span class="muted">Win rate</span><span>${b.win_rate_pct == null ? "–" : fmt(b.win_rate_pct, 0) + "%"}</span>
+        <span class="muted">Realized P&amp;L</span><span class="${cls(b.realized_pnl)}">$${fmt(b.realized_pnl)}</span>
+      </div></div>`;
+  }).join("");
+  document.querySelectorAll(".card").forEach(el => el.onclick = () => { selected = el.dataset.id; render(lastData); });
+}
+
+function renderChart(d) {
+  const datasets = d.bots.map((b, i) => ({
+    label: b.name, borderColor: COLORS[i % COLORS.length], backgroundColor: COLORS[i % COLORS.length],
+    borderWidth: b.id === selected ? 3 : 1.6, pointRadius: 0, tension: 0.15,
+    data: b.history.map(([t, eq]) => ({ x: new Date(t).getTime(), y: (eq / b.starting_cash - 1) * 100 })),
+  }));
+  const muted = getComputedStyle(document.documentElement).getPropertyValue("--muted").trim();
+  const line = getComputedStyle(document.documentElement).getPropertyValue("--line").trim();
+  const xs = datasets.flatMap(ds => ds.data.map(p => p.x));
+  const span = chartSpan = xs.length ? Math.max(...xs) - Math.min(...xs) : 0;
+  const pad = span < 6 * 3600e3 ? 3 * 3600e3 : 0;  // keep the axis readable before there's much history
+  const xmin = xs.length ? Math.min(...xs) - pad : undefined, xmax = xs.length ? Math.max(...xs) + pad : undefined;
+  if (chart) {
+    chart.data.datasets = datasets;
+    chart.options.scales.x.min = xmin; chart.options.scales.x.max = xmax;
+    chart.update("none"); return;
+  }
+  chart = new Chart(document.getElementById("chart"), {
+    type: "line", data: { datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false, interaction: { mode: "nearest", axis: "x", intersect: false },
+      scales: {
+        x: { type: "linear", min: xmin, max: xmax, ticks: { color: muted, maxTicksLimit: 8, callback: v => new Date(v).toLocaleString(undefined, chartSpan < 2 * 86400e3 ? { hour: "2-digit", minute: "2-digit" } : { month: "short", day: "numeric" }) }, grid: { color: line } },
+        y: { ticks: { color: muted, callback: v => v + "%" }, grid: { color: line } },
+      },
+      plugins: {
+        legend: { labels: { color: muted, boxWidth: 12 } },
+        tooltip: { callbacks: { title: items => when(new Date(items[0].parsed.x).toISOString()), label: c => `${c.dataset.label}: ${pct(c.parsed.y)}` } },
+      },
+    },
+  });
+}
+
+function renderDetail(d) {
+  document.getElementById("tabs").innerHTML = d.bots.map(b =>
+    `<button class="tab ${b.id === selected ? "sel" : ""}" data-id="${b.id}">${esc(b.name)}</button>`).join("");
+  document.querySelectorAll(".tab").forEach(el => el.onclick = () => { selected = el.dataset.id; render(lastData); });
+  const b = d.bots.find(x => x.id === selected);
+  if (!b) return;
+
+  const positions = b.positions.length ? `<div class="scroll"><table>
+      <tr><th>Coin</th><th>Entry</th><th>Now</th><th>Value</th><th>P&amp;L</th><th>Stop</th><th>Opened</th></tr>
+      ${b.positions.map(p => `<tr><td>${esc(p.symbol)}</td><td>${price(p.entry)}</td><td>${price(p.price)}</td><td>$${fmt(p.value)}</td>
+        <td class="${cls(p.pnl)}">$${fmt(p.pnl)} (${pct(p.pnl_pct)})</td><td>${p.stop > 0 ? price(p.stop) : "none"}</td><td>${when(p.opened_at)}</td></tr>`).join("")}
+    </table></div>` : `<div class="empty">No open positions. Cash: $${fmt(b.cash)}</div>`;
+
+  const sig = Object.entries(b.signals || {});
+  const signals = sig.length ? `<div class="scroll"><table>
+      <tr><th>Coin</th><th>Close</th><th>Signal</th><th>What the bot sees</th></tr>
+      ${sig.map(([s, v]) => `<tr><td>${esc(s)}</td><td>${price(v.close)}</td>
+        <td>${v.entry ? '<span class="up">buy setup</span>' : v.exit && b.positions.some(p => p.symbol === s) ? '<span class="down">sell signal</span>' : '<span class="muted">wait</span>'}</td>
+        <td class="wrap-text muted">${esc(v.text)}</td></tr>`).join("")}
+    </table></div>` : `<div class="empty">Waiting for the first closed candle.</div>`;
+
+  const trades = b.trades.length ? `<div class="scroll"><table>
+      <tr><th>Closed</th><th>Coin</th><th>Entry</th><th>Exit</th><th>P&amp;L</th><th>Reason</th></tr>
+      ${b.trades.map(t => `<tr><td>${when(t.closed_at)}</td><td>${esc(t.symbol)}</td><td>${price(t.entry)}</td><td>${price(t.exit)}</td>
+        <td class="${cls(t.pnl)}">$${fmt(t.pnl)} (${pct(t.return_pct)})</td><td>${esc(t.reason)}</td></tr>`).join("")}
+    </table></div>` : `<div class="empty">No closed trades yet.</div>`;
+
+  document.getElementById("detail").innerHTML = `
+    <div class="panel"><h2>${esc(b.name)} <span class="muted" style="font-weight:400">· ${esc(b.strategy)} · ${esc(b.timeframe)} candles</span></h2>
+      <div class="muted">${esc(b.description)}</div>
+      <div class="muted" style="margin-top:6px">Coins: ${b.symbols.map(esc).join(", ")} · running since ${when(b.started_at)} · last candle ${when(b.last_bar)}</div>
+      ${b.error ? `<div class="err" style="margin-top:6px">${esc(b.error)}</div>` : ""}
+      ${b.halted ? `<div class="err" style="margin-top:6px">Kill switch: ${esc(b.halted)}</div>` : ""}
+    </div>
+    <div class="two" style="margin-top:12px">
+      <div class="panel"><h2>Open positions</h2>${positions}</div>
+      <div class="panel"><h2>Latest signals</h2>${signals}</div>
+    </div>
+    <div class="panel" style="margin-top:12px"><h2>Recent trades</h2>${trades}</div>`;
+}
+
+function render(d) {
+  if (!d) return;
+  if (!selected || !d.bots.some(b => b.id === selected)) selected = d.bots[0]?.id;
+  const stale = (Date.now() - new Date(d.updated_at).getTime()) / 1000 > 3 * 3600;
+  document.getElementById("status").innerHTML = `Updated ${ago(d.updated_at)} · prices from ${esc(d.exchange)}` +
+    (stale ? ` · <span class="badge warn">not updating, check the runner</span>` : "");
+  renderCards(d); renderChart(d); renderDetail(d);
+}
+
+async function load() {
+  try {
+    const r = await fetch("data.json?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error(r.status);
+    lastData = await r.json();
+    render(lastData);
+  } catch (e) {
+    document.getElementById("status").innerHTML = `<span class="err">No data yet (${esc(e.message)}). Run a tick first.</span>`;
+  }
+}
+load();
+setInterval(load, 60000);
+</script>
+</body>
+</html>

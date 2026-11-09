@@ -1,0 +1,9 @@
+.env
+.venv/
+__pycache__/
+*.tmp
+data/
+logs/
+results/
+KILL
+# state/ and docs/data.json ARE committed: the cloud job stores the bots' accounts there between runs.

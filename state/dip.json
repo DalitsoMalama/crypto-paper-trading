@@ -1,0 +1,103 @@
+{
+ "bot_id": "dip",
+ "broker": {
+  "cash": 10000,
+  "positions": {},
+  "trades": []
+ },
+ "risk": {
+  "peak": 10000,
+  "day": "2026-11-09",
+  "day_start_equity": 10000,
+  "daily_blocked": false,
+  "halted_reason": null
+ },
+ "last_bar": "2026-11-08 00:00:00+00:00",
+ "last_exit": {},
+ "history": [
+  [
+   "2026-11-09T13:26:42.371970+00:00",
+   10000
+  ]
+ ],
+ "signals": {
+  "BTC/USD": {
+   "bar": "2026-11-08 00:00:00+00:00",
+   "close": 74737.9,
+   "entry": false,
+   "exit": false,
+   "text": "close 7.474e+04 vs lower band 7.653e+04 / middle 7.653e+04 | RSI 12 | -3.6% vs long average"
+  },
+  "ETH/USD": {
+   "bar": "2026-11-08 00:00:00+00:00",
+   "close": 2124.05,
+   "entry": false,
+   "exit": false,
+   "text": "close 2124 vs lower band 2251 / middle 2251 | RSI 8 | -9.1% vs long average"
+  },
+  "SOL/USD": {
+   "bar": "2026-11-08 00:00:00+00:00",
+   "close": 86.44,
+   "entry": false,
+   "exit": false,
+   "text": "close 86.44 vs lower band 90.18 / middle 90.18 | RSI 9 | -12.3% vs long average"
+  },
+  "XRP/USD": {
+   "bar": "2026-11-08 00:00:00+00:00",
+   "close": 1.11176,
+   "entry": false,
+   "exit": false,
+   "text": "close 1.112 vs lower band 1.192 / middle 1.192 | RSI 3 | -15.0% vs long average"
+  },
+  "ADA/USD": {
+   "bar": "2026-11-08 00:00:00+00:00",
+   "close": 0.174899,
+   "entry": false,
+   "exit": false,
+   "text": "close 0.1749 vs lower band 0.1836 / middle 0.1836 | RSI 12 | -17.3% vs long average"
+  },
+  "DOGE/USD": {
+   "bar": "2026-11-08 00:00:00+00:00",
+   "close": 0.0688901,
+   "entry": false,
+   "exit": false,
+   "text": "close 0.06889 vs lower band 0.07216 / middle 0.07216 | RSI 11 | -16.1% vs long average"
+  },
+  "AVAX/USD": {
+   "bar": "2026-11-08 00:00:00+00:00",
+   "close": 7.929,
+   "entry": false,
+   "exit": false,
+   "text": "close 7.929 vs lower band 8.275 / middle 8.275 | RSI 12 | -9.5% vs long average"
+  },
+  "LINK/USD": {
+   "bar": "2026-11-08 00:00:00+00:00",
+   "close": 10.39269,
+   "entry": false,
+   "exit": false,
+   "text": "close 10.39 vs lower band 10.83 / middle 10.83 | RSI 12 | -8.9% vs long average"
+  },
+  "BNB/USD": {
+   "bar": "2026-11-08 00:00:00+00:00",
+   "close": 683.9,
+   "entry": false,
+   "exit": false,
+   "text": "close 683.9 vs lower band 696 / middle 696 | RSI 19 | -3.1% vs long average"
+  }
+ },
+ "started_at": "2026-11-09T13:26:39.817560+00:00",
+ "updated_at": "2026-11-09T13:26:42.371970+00:00",
+ "equity": 10000,
+ "prices": {
+  "BTC/USD": 74579.0,
+  "ETH/USD": 2116.74,
+  "SOL/USD": 86.39,
+  "XRP/USD": 1.09456,
+  "ADA/USD": 0.178514,
+  "DOGE/USD": 0.0695697,
+  "AVAX/USD": 8.645,
+  "LINK/USD": 10.57674,
+  "BNB/USD": 684.06
+ },
+ "error": null
+}

@@ -1,0 +1,71 @@
+{
+ "bot_id": "squeeze",
+ "broker": {
+  "cash": 10000,
+  "positions": {},
+  "trades": []
+ },
+ "risk": {
+  "peak": 10000,
+  "day": "2026-11-09",
+  "day_start_equity": 10000,
+  "daily_blocked": false,
+  "halted_reason": null
+ },
+ "last_bar": "2026-11-09 08:00:00+00:00",
+ "last_exit": {},
+ "history": [
+  [
+   "2026-11-09T13:26:42.371970+00:00",
+   10000
+  ]
+ ],
+ "signals": {
+  "BTC/USD": {
+   "bar": "2026-11-09 08:00:00+00:00",
+   "close": 74271.4,
+   "entry": false,
+   "exit": true,
+   "text": "band width percentile 44% | close 7.427e+04 vs upper 7.677e+04 | volume 0.9x average"
+  },
+  "ETH/USD": {
+   "bar": "2026-11-09 08:00:00+00:00",
+   "close": 2110.5,
+   "entry": false,
+   "exit": true,
+   "text": "band width percentile 76% | close 2110 vs upper 2312 | volume 1.1x average"
+  },
+  "SOL/USD": {
+   "bar": "2026-11-09 08:00:00+00:00",
+   "close": 86.0,
+   "entry": false,
+   "exit": true,
+   "text": "band width percentile 63% | close 86 vs upper 92.06 | volume 1.0x average"
+  },
+  "XRP/USD": {
+   "bar": "2026-11-09 08:00:00+00:00",
+   "close": 1.07954,
+   "entry": false,
+   "exit": true,
+   "text": "band width percentile 88% | close 1.08 vs upper 1.221 | volume 0.8x average"
+  },
+  "LINK/USD": {
+   "bar": "2026-11-09 08:00:00+00:00",
+   "close": 10.51029,
+   "entry": false,
+   "exit": true,
+   "text": "band width percentile 21% | close 10.51 vs upper 11.07 | volume 1.3x average"
+  }
+ },
+ "started_at": "2026-11-09T13:26:39.817560+00:00",
+ "updated_at": "2026-11-09T13:26:42.371970+00:00",
+ "equity": 10000,
+ "prices": {
+  "BTC/USD": 74579.0,
+  "ETH/USD": 2116.74,
+  "SOL/USD": 86.39,
+  "XRP/USD": 1.09456,
+  "LINK/USD": 10.57674
+ },
+ "error": null
+}

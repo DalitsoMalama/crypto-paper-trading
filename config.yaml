@@ -1,0 +1,91 @@
+# ---------------------------------------------------------------------------
+# Agentic crypto trading bots: PAPER TRADING configuration
+# No exchange API keys are used anywhere. Market data comes from public
+# endpoints; every order is simulated by bot/broker.py.
+# ---------------------------------------------------------------------------
+
+exchange: kraken           # live paper trading data. Kraken is US-based, so it works from cloud servers
+                           # (Binance blocks US data centres, where GitHub's runners live)
+backtest:
+  exchange: binance        # long history for backtests (Kraken only serves the last 720 candles)
+  quote: USDT              # BTC/USD in this file is tested as BTC/USDT on Binance
+
+starting_cash: 10000       # simulated USD per bot. Every bot has its own separate account
+fee_rate: 0.001            # 0.1% per fill (typical spot taker fee; Kraken is higher at low volume)
+slippage_bps: 5            # 0.05% adverse price on every fill
+
+# Default hard limits for every bot (a bot can override any of them under its own `risk:`).
+# Neither the strategies nor the Claude agent can override these.
+risk:
+  risk_per_trade: 0.01     # lose at most 1% of equity if the initial stop is hit
+  max_position_pct: 0.25   # never more than 25% of equity in one coin
+  max_open_positions: 3
+  max_daily_loss_pct: 0.03 # no new entries for the rest of the day after -3%
+  max_drawdown_pct: 0.15   # kill switch: no new entries ever again after -15% from peak
+
+# Optional LLM review of each entry (veto or shrink only). Needs ANTHROPIC_API_KEY. Not used in backtests.
+agent:
+  enabled: false
+  model: claude-opus-5-5
+
+paper:
+  poll_seconds: 60         # local `paper` loop only; the cloud job runs on its own schedule
+  state_dir: state
+  dashboard_file: docs/data.json
+  log_file: logs/paper.log
+
+# ---------------------------------------------------------------------------
+# The bots. Each runs independently with its own $10,000 paper account.
+# Exits (all in multiples of ATR, the coin's average bar range):
+#   stop_atr        initial stop below entry        trail_atr     trailing stop below the highest high (0 = off)
+#   take_profit_atr fixed target (0 = none)         max_hold_bars sell after this many bars (0 = no limit)
+#   cooldown_bars   wait after a sale before buying the same coin again
+# ---------------------------------------------------------------------------
+bots:
+  - id: trend
+    name: Trend Follower
+    description: Buys coins in an uptrend when trend, breakout or pullback signals fire, and rides them with a trailing stop.
+    strategy: trend_ensemble
+    timeframe: 4h
+    symbols: [BTC/USD, ETH/USD, SOL/USD]
+    params: {regime_ema: 200, min_votes: 1}
+    exits: {stop_atr: 3.5, trail_atr: 3.5, cooldown_bars: 3}
+
+  - id: rotation
+    name: Momentum Rotation
+    description: Once a day, holds the 3 strongest of 9 large coins by 14-day return; all cash when BTC is below its 50-day average.
+    strategy: momentum_rotation
+    timeframe: 1d
+    symbols: [BTC/USD, ETH/USD, SOL/USD, XRP/USD, ADA/USD, DOGE/USD, AVAX/USD, LINK/USD, BNB/USD]
+    params: {lookback: 14, top_n: 3, hold_rank: 5, trend_sma: 50, market_symbol: BTC/USD, market_sma: 50}
+    exits: {stop_atr: 5.0}
+    # Equal weight: 25% in each of the top 3, 25% stays cash. Holding 75% in coins makes 15% drawdowns routine, so this
+    # bot's kill switch sits at 30% (backtest worst: about -32% without any kill switch). Lower max_position_pct for less risk.
+    risk: {risk_per_trade: 1.0, max_position_pct: 0.25, max_drawdown_pct: 0.30}
+
+  - id: squeeze
+    name: Squeeze Breakout
+    description: In uptrends, waits for volatility to go unusually quiet, then buys a high-volume breakout and trails it.
+    strategy: squeeze_breakout
+    timeframe: 4h
+    symbols: [BTC/USD, ETH/USD, SOL/USD, XRP/USD, LINK/USD]
+    params: {squeeze_pct: 0.2, volume_mult: 1.5, trend_ema: 200}
+    exits: {stop_atr: 2.0, trail_atr: 4.0, cooldown_bars: 3}
+
+  - id: dip
+    name: Dip Buyer
+    description: "Buys coins above their 100-day average after a sharp 2-day drop (RSI(2) under 5), sells on the bounce. Weak in backtests: kept as the mean-reversion contender."
+    strategy: mean_reversion
+    timeframe: 1d
+    symbols: [BTC/USD, ETH/USD, SOL/USD, XRP/USD, ADA/USD, DOGE/USD, AVAX/USD, LINK/USD, BNB/USD]
+    params: {bb_len: 5, bb_k: 0.0, rsi_period: 2, rsi_entry: 5, trend_ema: 100, crash_filter: 0.0}
+    exits: {stop_atr: 3.0, max_hold_bars: 5, cooldown_bars: 1}
+
+  - id: hodl
+    name: BTC Buy & Hold
+    description: Benchmark, not a strategy. Bought BTC once and never sells. A bot is only worth real money if it beats this on return or on drawdown.
+    strategy: buy_and_hold
+    timeframe: 1d
+    symbols: [BTC/USD]
+    exits: {stop_atr: 1000}                               # effectively no stop
+    risk: {risk_per_trade: 1.0, max_position_pct: 0.99, max_drawdown_pct: 1.0, max_daily_loss_pct: 1.0}

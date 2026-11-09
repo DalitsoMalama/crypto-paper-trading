@@ -1,0 +1,45 @@
+# Runs every paper-trading bot once, then commits the updated state and dashboard data back to the repo.
+# GitHub starts scheduled runs on a best-effort basis: expect gaps of 15-30+ minutes at busy times. That's fine for
+# strategies on 1h/4h/1d candles. Stops are checked at each run, not continuously.
+name: Paper trading
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"   # every 15 minutes (off the hour, when GitHub is less busy)
+  workflow_dispatch: {}            # "Run workflow" button for a manual tick
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-trading
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Run one tick for every bot
+        run: python main.py tick
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}   # only used if agent.enabled is true
+
+      - name: Save state and dashboard data
+        run: |
+          git config user.name "paper-trading-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state docs/data.json
+          if git diff --cached --quiet; then echo "nothing changed"; exit 0; fi
+          git commit -q -m "paper tick $(date -u +'%Y-%m-%d %H:%M') UTC"
+          git pull -q --rebase
+          git push -q

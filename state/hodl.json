@@ -1,0 +1,51 @@
+{
+ "bot_id": "hodl",
+ "broker": {
+  "cash": 85.14505000000099,
+  "positions": {
+   "BTC/USD": {
+    "symbol": "BTC/USD",
+    "qty": 0.13274514273454993,
+    "entry_price": 74616.2895,
+    "entry_fee": 9.90495,
+    "stop": -2234671.534296324,
+    "take": Infinity,
+    "opened_at": "2026-11-09 13:26:42.371970+00:00",
+    "note": "benchmark: buy once and hold",
+    "highest": 74616.2895
+   }
+  },
+  "trades": []
+ },
+ "risk": {
+  "peak": 9985.145050000001,
+  "day": "2026-11-09",
+  "day_start_equity": 9985.145050000001,
+  "daily_blocked": false,
+  "halted_reason": null
+ },
+ "last_bar": "2026-11-08 00:00:00+00:00",
+ "last_exit": {},
+ "history": [
+  [
+   "2026-11-09T13:26:42.371970+00:00",
+   9985.15
+  ]
+ ],
+ "signals": {
+  "BTC/USD": {
+   "bar": "2026-11-08 00:00:00+00:00",
+   "close": 74737.9,
+   "entry": true,
+   "exit": false,
+   "text": "benchmark: buy once and hold"
+  }
+ },
+ "started_at": "2026-11-09T13:26:39.817560+00:00",
+ "updated_at": "2026-11-09T13:26:42.371970+00:00",
+ "equity": 9985.145050000001,
+ "prices": {
+  "BTC/USD": 74579.0
+ },
+ "error": null
+}
