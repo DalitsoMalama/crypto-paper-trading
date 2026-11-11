@@ -12,7 +12,7 @@
   "daily_blocked": false,
   "halted_reason": null
  },
- "last_bar": "2026-11-11 08:00:00+00:00",
+ "last_bar": "2026-11-11 16:00:00+00:00",
  "last_exit": {},
  "history": [
   [
@@ -46,54 +46,58 @@
   [
    "2026-11-11T15:39:24.556640+00:00",
    10000
+  ],
+  [
+   "2026-11-11T22:20:18.174745+00:00",
+   10000
   ]
  ],
  "signals": {
   "BTC/USD": {
-   "bar": "2026-11-11 08:00:00+00:00",
-   "close": 73920.6,
+   "bar": "2026-11-11 16:00:00+00:00",
+   "close": 74334.9,
    "entry": false,
    "exit": true,
-   "text": "band width percentile 52% | close 7.392e+04 vs upper 7.636e+04 | volume 0.5x average"
+   "text": "band width percentile 47% | close 7.433e+04 vs upper 7.598e+04 | volume 1.3x average"
   },
   "ETH/USD": {
-   "bar": "2026-11-11 08:00:00+00:00",
-   "close": 2054.89,
+   "bar": "2026-11-11 16:00:00+00:00",
+   "close": 2075.24,
    "entry": false,
    "exit": true,
-   "text": "band width percentile 85% | close 2055 vs upper 2257 | volume 0.3x average"
+   "text": "band width percentile 75% | close 2075 vs upper 2217 | volume 1.0x average"
   },
   "SOL/USD": {
-   "bar": "2026-11-11 08:00:00+00:00",
-   "close": 83.86,
+   "bar": "2026-11-11 16:00:00+00:00",
+   "close": 84.77,
    "entry": false,
    "exit": true,
-   "text": "band width percentile 84% | close 83.86 vs upper 90.72 | volume 0.4x average"
+   "text": "band width percentile 74% | close 84.77 vs upper 89.66 | volume 1.0x average"
   },
   "XRP/USD": {
-   "bar": "2026-11-11 08:00:00+00:00",
-   "close": 1.05732,
+   "bar": "2026-11-11 16:00:00+00:00",
+   "close": 1.05862,
    "entry": false,
    "exit": true,
-   "text": "band width percentile 86% | close 1.057 vs upper 1.172 | volume 0.3x average"
+   "text": "band width percentile 76% | close 1.059 vs upper 1.148 | volume 0.9x average"
   },
   "LINK/USD": {
-   "bar": "2026-11-11 08:00:00+00:00",
-   "close": 10.38287,
+   "bar": "2026-11-11 16:00:00+00:00",
+   "close": 10.46249,
    "entry": false,
    "exit": true,
-   "text": "band width percentile 28% | close 10.38 vs upper 10.88 | volume 0.4x average"
+   "text": "band width percentile 19% | close 10.46 vs upper 10.81 | volume 0.7x average"
   }
  },
  "started_at": "2026-11-09T13:26:39.817560+00:00",
- "updated_at": "2026-11-11T15:39:24.556640+00:00",
+ "updated_at": "2026-11-11T22:20:18.174745+00:00",
  "equity": 10000,
  "prices": {
-  "BTC/USD": 74079.3,
-  "ETH/USD": 2077.35,
-  "SOL/USD": 84.86,
-  "XRP/USD": 1.07234,
-  "LINK/USD": 10.45868
+  "BTC/USD": 74412.8,
+  "ETH/USD": 2076.47,
+  "SOL/USD": 84.72,
+  "XRP/USD": 1.06156,
+  "LINK/USD": 10.38775
  },
  "error": null
 }
