@@ -7,12 +7,12 @@
  },
  "risk": {
   "peak": 10000,
-  "day": "2026-11-11",
+  "day": "2026-11-12",
   "day_start_equity": 10000,
   "daily_blocked": false,
   "halted_reason": null
  },
- "last_bar": "2026-11-10 00:00:00+00:00",
+ "last_bar": "2026-11-11 00:00:00+00:00",
  "last_exit": {},
  "history": [
   [
@@ -50,86 +50,90 @@
   [
    "2026-11-11T22:20:18.174745+00:00",
    10000
+  ],
+  [
+   "2026-11-12T03:11:12.166132+00:00",
+   10000
   ]
  ],
  "signals": {
   "BTC/USD": {
-   "bar": "2026-11-10 00:00:00+00:00",
-   "close": 73700.3,
+   "bar": "2026-11-11 00:00:00+00:00",
+   "close": 73928.4,
    "entry": false,
    "exit": true,
-   "text": "rank #3 | 14-bar return -8.8% | above average: no | BTC above 50-day average: no"
+   "text": "rank #2 | 14-bar return -9.1% | above average: no | BTC above 50-day average: no"
   },
   "ETH/USD": {
-   "bar": "2026-11-10 00:00:00+00:00",
-   "close": 2051.0,
+   "bar": "2026-11-11 00:00:00+00:00",
+   "close": 2053.48,
    "entry": false,
    "exit": true,
-   "text": "rank #5 | 14-bar return -12.6% | above average: no | BTC above 50-day average: no"
+   "text": "rank #4 | 14-bar return -12.9% | above average: no | BTC above 50-day average: no"
   },
   "SOL/USD": {
-   "bar": "2026-11-10 00:00:00+00:00",
-   "close": 83.24,
+   "bar": "2026-11-11 00:00:00+00:00",
+   "close": 83.19,
    "entry": false,
    "exit": true,
-   "text": "rank #8 | 14-bar return -17.8% | above average: no | BTC above 50-day average: no"
+   "text": "rank #8 | 14-bar return -18.7% | above average: no | BTC above 50-day average: no"
   },
   "XRP/USD": {
-   "bar": "2026-11-10 00:00:00+00:00",
-   "close": 1.05509,
+   "bar": "2026-11-11 00:00:00+00:00",
+   "close": 1.05104,
    "entry": false,
    "exit": true,
    "text": "rank #9 | 14-bar return -20.7% | above average: no | BTC above 50-day average: no"
   },
   "ADA/USD": {
-   "bar": "2026-11-10 00:00:00+00:00",
-   "close": 0.173741,
+   "bar": "2026-11-11 00:00:00+00:00",
+   "close": 0.174408,
    "entry": false,
    "exit": true,
-   "text": "rank #7 | 14-bar return -15.5% | above average: no | BTC above 50-day average: no"
+   "text": "rank #6 | 14-bar return -15.2% | above average: no | BTC above 50-day average: no"
   },
   "DOGE/USD": {
-   "bar": "2026-11-10 00:00:00+00:00",
-   "close": 0.0679702,
+   "bar": "2026-11-11 00:00:00+00:00",
+   "close": 0.0674406,
    "entry": false,
    "exit": true,
-   "text": "rank #6 | 14-bar return -13.9% | above average: no | BTC above 50-day average: no"
+   "text": "rank #7 | 14-bar return -15.3% | above average: no | BTC above 50-day average: no"
   },
   "AVAX/USD": {
-   "bar": "2026-11-10 00:00:00+00:00",
-   "close": 8.369,
+   "bar": "2026-11-11 00:00:00+00:00",
+   "close": 8.515,
    "entry": false,
    "exit": true,
-   "text": "rank #1 | 14-bar return -6.5% | above average: no | BTC above 50-day average: no"
+   "text": "rank #1 | 14-bar return -5.4% | above average: no | BTC above 50-day average: no"
   },
   "LINK/USD": {
-   "bar": "2026-11-10 00:00:00+00:00",
-   "close": 10.28444,
+   "bar": "2026-11-11 00:00:00+00:00",
+   "close": 10.18621,
    "entry": false,
    "exit": true,
-   "text": "rank #4 | 14-bar return -11.1% | above average: no | BTC above 50-day average: no"
+   "text": "rank #5 | 14-bar return -13.7% | above average: no | BTC above 50-day average: no"
   },
   "BNB/USD": {
-   "bar": "2026-11-10 00:00:00+00:00",
-   "close": 679.88,
+   "bar": "2026-11-11 00:00:00+00:00",
+   "close": 679.14,
    "entry": false,
    "exit": true,
-   "text": "rank #2 | 14-bar return -8.6% | above average: no | BTC above 50-day average: no"
+   "text": "rank #3 | 14-bar return -10.6% | above average: no | BTC above 50-day average: no"
   }
  },
  "started_at": "2026-11-09T13:26:39.817560+00:00",
- "updated_at": "2026-11-11T22:20:18.174745+00:00",
+ "updated_at": "2026-11-12T03:11:12.166132+00:00",
  "equity": 10000,
  "prices": {
-  "BTC/USD": 74412.8,
-  "ETH/USD": 2076.47,
-  "SOL/USD": 84.72,
-  "XRP/USD": 1.06156,
-  "ADA/USD": 0.177489,
-  "DOGE/USD": 0.0685986,
-  "AVAX/USD": 8.612,
-  "LINK/USD": 10.38775,
-  "BNB/USD": 685.64
+  "BTC/USD": 73704.1,
+  "ETH/USD": 2053.3,
+  "SOL/USD": 83.18,
+  "XRP/USD": 1.04648,
+  "ADA/USD": 0.173308,
+  "DOGE/USD": 0.0672789,
+  "AVAX/USD": 8.577,
+  "LINK/USD": 10.14763,
+  "BNB/USD": 679.16
  },
  "error": null
 }
