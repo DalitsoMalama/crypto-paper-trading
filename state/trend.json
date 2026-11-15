@@ -12,7 +12,7 @@
   "daily_blocked": false,
   "halted_reason": null
  },
- "last_bar": "2026-11-15 12:00:00+00:00",
+ "last_bar": "2026-11-15 16:00:00+00:00",
  "last_exit": {},
  "history": [
   [
@@ -110,38 +110,42 @@
   [
    "2026-11-15T18:58:59.987535+00:00",
    10000
+  ],
+  [
+   "2026-11-15T23:22:41.482951+00:00",
+   10000
   ]
  ],
  "signals": {
   "BTC/USD": {
-   "bar": "2026-11-15 12:00:00+00:00",
-   "close": 64708.1,
-   "entry": false,
-   "exit": true,
-   "text": "uptrend=no | bullish: RSI pullback | bearish: EMA trend | RSI 29"
-  },
-  "ETH/USD": {
-   "bar": "2026-11-15 12:00:00+00:00",
-   "close": 1809.77,
-   "entry": false,
-   "exit": true,
-   "text": "uptrend=no | bullish: RSI pullback | bearish: EMA trend | RSI 34"
-  },
-  "SOL/USD": {
-   "bar": "2026-11-15 12:00:00+00:00",
-   "close": 71.2,
+   "bar": "2026-11-15 16:00:00+00:00",
+   "close": 64907.3,
    "entry": false,
    "exit": true,
    "text": "uptrend=no | bullish: RSI pullback | bearish: EMA trend | RSI 31"
+  },
+  "ETH/USD": {
+   "bar": "2026-11-15 16:00:00+00:00",
+   "close": 1823.25,
+   "entry": false,
+   "exit": true,
+   "text": "uptrend=no | bullish: RSI pullback | bearish: EMA trend | RSI 36"
+  },
+  "SOL/USD": {
+   "bar": "2026-11-15 16:00:00+00:00",
+   "close": 71.65,
+   "entry": false,
+   "exit": true,
+   "text": "uptrend=no | bullish: RSI pullback | bearish: EMA trend | RSI 33"
   }
  },
  "started_at": "2026-11-09T13:26:39.817560+00:00",
- "updated_at": "2026-11-15T18:58:59.987535+00:00",
+ "updated_at": "2026-11-15T23:22:41.482951+00:00",
  "equity": 10000,
  "prices": {
-  "BTC/USD": 64683.3,
-  "ETH/USD": 1814.38,
-  "SOL/USD": 71.03
+  "BTC/USD": 65033.9,
+  "ETH/USD": 1824.46,
+  "SOL/USD": 72.2
  },
  "error": null
 }
