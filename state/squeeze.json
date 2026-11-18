@@ -7,12 +7,12 @@
  },
  "risk": {
   "peak": 10000,
-  "day": "2026-11-17",
+  "day": "2026-11-18",
   "day_start_equity": 10000,
   "daily_blocked": false,
   "halted_reason": null
  },
- "last_bar": "2026-11-17 16:00:00+00:00",
+ "last_bar": "2026-11-17 20:00:00+00:00",
  "last_exit": {},
  "history": [
   [
@@ -138,54 +138,58 @@
   [
    "2026-11-17T21:19:09.844014+00:00",
    10000
+  ],
+  [
+   "2026-11-18T02:59:10.948592+00:00",
+   10000
   ]
  ],
  "signals": {
   "BTC/USD": {
-   "bar": "2026-11-17 16:00:00+00:00",
-   "close": 63675.9,
+   "bar": "2026-11-17 20:00:00+00:00",
+   "close": 64877.0,
    "entry": false,
-   "exit": true,
-   "text": "band width percentile 26% | close 6.368e+04 vs upper 6.585e+04 | volume 1.2x average"
+   "exit": false,
+   "text": "band width percentile 18% | close 6.488e+04 vs upper 6.572e+04 | volume 1.1x average"
   },
   "ETH/USD": {
-   "bar": "2026-11-17 16:00:00+00:00",
-   "close": 1788.9,
+   "bar": "2026-11-17 20:00:00+00:00",
+   "close": 1822.9,
    "entry": false,
-   "exit": true,
-   "text": "band width percentile 20% | close 1789 vs upper 1854 | volume 1.7x average"
+   "exit": false,
+   "text": "band width percentile 18% | close 1823 vs upper 1852 | volume 1.2x average"
   },
   "SOL/USD": {
-   "bar": "2026-11-17 16:00:00+00:00",
-   "close": 72.76,
+   "bar": "2026-11-17 20:00:00+00:00",
+   "close": 75.11,
    "entry": false,
    "exit": false,
-   "text": "band width percentile 15% | close 72.76 vs upper 73.96 | volume 0.8x average"
+   "text": "band width percentile 25% | close 75.11 vs upper 74.33 | volume 1.1x average"
   },
   "XRP/USD": {
-   "bar": "2026-11-17 16:00:00+00:00",
-   "close": 0.96439,
+   "bar": "2026-11-17 20:00:00+00:00",
+   "close": 0.9826,
    "entry": false,
    "exit": false,
-   "text": "band width percentile 16% | close 0.9644 vs upper 0.9836 | volume 0.9x average"
+   "text": "band width percentile 18% | close 0.9826 vs upper 0.9858 | volume 1.3x average"
   },
   "LINK/USD": {
-   "bar": "2026-11-17 16:00:00+00:00",
-   "close": 9.10816,
+   "bar": "2026-11-17 20:00:00+00:00",
+   "close": 9.31175,
    "entry": false,
-   "exit": true,
-   "text": "band width percentile 2% | close 9.108 vs upper 9.347 | volume 0.4x average"
+   "exit": false,
+   "text": "band width percentile 3% | close 9.312 vs upper 9.355 | volume 0.8x average"
   }
  },
  "started_at": "2026-11-09T13:26:39.817560+00:00",
- "updated_at": "2026-11-17T21:19:09.844014+00:00",
+ "updated_at": "2026-11-18T02:59:10.948592+00:00",
  "equity": 10000,
  "prices": {
-  "BTC/USD": 63959.0,
-  "ETH/USD": 1795.86,
-  "SOL/USD": 72.93,
-  "XRP/USD": 0.96683,
-  "LINK/USD": 9.13495
+  "BTC/USD": 64260.6,
+  "ETH/USD": 1802.57,
+  "SOL/USD": 74.52,
+  "XRP/USD": 0.97414,
+  "LINK/USD": 9.15199
  },
  "error": null
 }
