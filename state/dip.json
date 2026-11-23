@@ -7,12 +7,12 @@
  },
  "risk": {
   "peak": 10000,
-  "day": "2026-11-22",
+  "day": "2026-11-23",
   "day_start_equity": 10000,
   "daily_blocked": false,
   "halted_reason": null
  },
- "last_bar": "2026-11-21 00:00:00+00:00",
+ "last_bar": "2026-11-22 00:00:00+00:00",
  "last_exit": {},
  "history": [
   [
@@ -206,86 +206,90 @@
   [
    "2026-11-22T21:01:22.358795+00:00",
    10000
+  ],
+  [
+   "2026-11-23T01:36:17.229291+00:00",
+   10000
   ]
  ],
  "signals": {
   "BTC/USD": {
-   "bar": "2026-11-21 00:00:00+00:00",
-   "close": 60088.6,
+   "bar": "2026-11-22 00:00:00+00:00",
+   "close": 61170.1,
    "entry": false,
-   "exit": false,
-   "text": "close 6.009e+04 vs lower band 6.173e+04 / middle 6.173e+04 | RSI 38 | -19.8% vs long average"
+   "exit": true,
+   "text": "close 6.117e+04 vs lower band 6.099e+04 / middle 6.099e+04 | RSI 62 | -18.1% vs long average"
   },
   "ETH/USD": {
-   "bar": "2026-11-21 00:00:00+00:00",
-   "close": 1682.27,
+   "bar": "2026-11-22 00:00:00+00:00",
+   "close": 1721.45,
    "entry": false,
-   "exit": false,
-   "text": "close 1682 vs lower band 1731 / middle 1731 | RSI 44 | -24.5% vs long average"
+   "exit": true,
+   "text": "close 1721 vs lower band 1711 / middle 1711 | RSI 64 | -22.3% vs long average"
   },
   "SOL/USD": {
-   "bar": "2026-11-21 00:00:00+00:00",
-   "close": 70.17,
+   "bar": "2026-11-22 00:00:00+00:00",
+   "close": 70.62,
    "entry": false,
    "exit": false,
-   "text": "close 70.17 vs lower band 72.12 / middle 72.12 | RSI 40 | -24.8% vs long average"
+   "text": "close 70.62 vs lower band 71.23 / middle 71.23 | RSI 50 | -24.0% vs long average"
   },
   "XRP/USD": {
-   "bar": "2026-11-21 00:00:00+00:00",
-   "close": 0.93015,
+   "bar": "2026-11-22 00:00:00+00:00",
+   "close": 0.92751,
    "entry": false,
    "exit": false,
-   "text": "close 0.9302 vs lower band 0.9494 / middle 0.9494 | RSI 44 | -24.7% vs long average"
+   "text": "close 0.9275 vs lower band 0.9384 / middle 0.9384 | RSI 40 | -24.5% vs long average"
   },
   "ADA/USD": {
-   "bar": "2026-11-21 00:00:00+00:00",
-   "close": 0.144136,
+   "bar": "2026-11-22 00:00:00+00:00",
+   "close": 0.144583,
    "entry": false,
    "exit": false,
-   "text": "close 0.1441 vs lower band 0.149 / middle 0.149 | RSI 24 | -27.8% vs long average"
+   "text": "close 0.1446 vs lower band 0.1469 / middle 0.1469 | RSI 33 | -27.1% vs long average"
   },
   "DOGE/USD": {
-   "bar": "2026-11-21 00:00:00+00:00",
-   "close": 0.0551859,
+   "bar": "2026-11-22 00:00:00+00:00",
+   "close": 0.0552489,
    "entry": false,
    "exit": false,
-   "text": "close 0.05519 vs lower band 0.05727 / middle 0.05727 | RSI 31 | -28.6% vs long average"
+   "text": "close 0.05525 vs lower band 0.05631 / middle 0.05631 | RSI 33 | -28.1% vs long average"
   },
   "AVAX/USD": {
-   "bar": "2026-11-21 00:00:00+00:00",
-   "close": 6.571,
+   "bar": "2026-11-22 00:00:00+00:00",
+   "close": 6.673,
    "entry": false,
    "exit": false,
-   "text": "close 6.571 vs lower band 6.874 / middle 6.874 | RSI 21 | -22.5% vs long average"
+   "text": "close 6.673 vs lower band 6.752 / middle 6.752 | RSI 49 | -20.9% vs long average"
   },
   "LINK/USD": {
-   "bar": "2026-11-21 00:00:00+00:00",
-   "close": 8.59295,
+   "bar": "2026-11-22 00:00:00+00:00",
+   "close": 8.80399,
    "entry": false,
-   "exit": false,
-   "text": "close 8.593 vs lower band 8.9 / middle 8.9 | RSI 21 | -21.6% vs long average"
+   "exit": true,
+   "text": "close 8.804 vs lower band 8.798 / middle 8.798 | RSI 63 | -19.3% vs long average"
   },
   "BNB/USD": {
-   "bar": "2026-11-21 00:00:00+00:00",
-   "close": 547.53,
+   "bar": "2026-11-22 00:00:00+00:00",
+   "close": 558.38,
    "entry": false,
    "exit": false,
-   "text": "close 547.5 vs lower band 569.1 / middle 569.1 | RSI 27 | -19.9% vs long average"
+   "text": "close 558.4 vs lower band 561.4 / middle 561.4 | RSI 57 | -18.0% vs long average"
   }
  },
  "started_at": "2026-11-09T13:26:39.817560+00:00",
- "updated_at": "2026-11-22T21:01:22.358795+00:00",
+ "updated_at": "2026-11-23T01:36:17.229291+00:00",
  "equity": 10000,
  "prices": {
-  "BTC/USD": 60777.5,
-  "ETH/USD": 1716.8,
-  "SOL/USD": 70.0,
-  "XRP/USD": 0.925,
-  "ADA/USD": 0.144564,
-  "DOGE/USD": 0.0551418,
-  "AVAX/USD": 6.669,
-  "LINK/USD": 8.79433,
-  "BNB/USD": 556.0
+  "BTC/USD": 61070.4,
+  "ETH/USD": 1715.26,
+  "SOL/USD": 70.51,
+  "XRP/USD": 0.91961,
+  "ADA/USD": 0.143428,
+  "DOGE/USD": 0.0549036,
+  "AVAX/USD": 6.632,
+  "LINK/USD": 8.81969,
+  "BNB/USD": 558.53
  },
  "error": null
 }
