@@ -7,12 +7,12 @@
  },
  "risk": {
   "peak": 10000,
-  "day": "2026-11-26",
+  "day": "2026-11-27",
   "day_start_equity": 10000,
   "daily_blocked": false,
   "halted_reason": null
  },
- "last_bar": "2026-11-25 00:00:00+00:00",
+ "last_bar": "2026-11-26 00:00:00+00:00",
  "last_exit": {},
  "history": [
   [
@@ -250,86 +250,90 @@
   [
    "2026-11-26T20:30:42.541480+00:00",
    10000
+  ],
+  [
+   "2026-11-27T03:14:46.404842+00:00",
+   10000
   ]
  ],
  "signals": {
   "BTC/USD": {
-   "bar": "2026-11-25 00:00:00+00:00",
-   "close": 60368.6,
+   "bar": "2026-11-26 00:00:00+00:00",
+   "close": 60499.2,
    "entry": false,
    "exit": false,
-   "text": "close 6.037e+04 vs lower band 6.052e+04 / middle 6.052e+04 | RSI 50 | -18.2% vs long average"
+   "text": "close 6.05e+04 vs lower band 6.06e+04 / middle 6.06e+04 | RSI 56 | -17.7% vs long average"
   },
   "ETH/USD": {
-   "bar": "2026-11-25 00:00:00+00:00",
-   "close": 1690.58,
+   "bar": "2026-11-26 00:00:00+00:00",
+   "close": 1687.76,
    "entry": false,
    "exit": false,
-   "text": "close 1691 vs lower band 1696 / middle 1696 | RSI 48 | -22.6% vs long average"
+   "text": "close 1688 vs lower band 1697 / middle 1697 | RSI 43 | -22.4% vs long average"
   },
   "SOL/USD": {
-   "bar": "2026-11-25 00:00:00+00:00",
-   "close": 70.39,
+   "bar": "2026-11-26 00:00:00+00:00",
+   "close": 70.93,
    "entry": false,
-   "exit": false,
-   "text": "close 70.39 vs lower band 70.54 / middle 70.54 | RSI 49 | -23.1% vs long average"
+   "exit": true,
+   "text": "close 70.93 vs lower band 70.7 / middle 70.7 | RSI 64 | -22.2% vs long average"
   },
   "XRP/USD": {
-   "bar": "2026-11-25 00:00:00+00:00",
-   "close": 0.93652,
+   "bar": "2026-11-26 00:00:00+00:00",
+   "close": 0.94276,
    "entry": false,
    "exit": true,
-   "text": "close 0.9365 vs lower band 0.9315 / middle 0.9315 | RSI 63 | -22.7% vs long average"
+   "text": "close 0.9428 vs lower band 0.934 / middle 0.934 | RSI 75 | -21.8% vs long average"
   },
   "ADA/USD": {
-   "bar": "2026-11-25 00:00:00+00:00",
-   "close": 0.145803,
+   "bar": "2026-11-26 00:00:00+00:00",
+   "close": 0.148469,
    "entry": false,
    "exit": true,
-   "text": "close 0.1458 vs lower band 0.1455 / middle 0.1455 | RSI 52 | -25.3% vs long average"
+   "text": "close 0.1485 vs lower band 0.1463 / middle 0.1463 | RSI 77 | -23.5% vs long average"
   },
   "DOGE/USD": {
-   "bar": "2026-11-25 00:00:00+00:00",
-   "close": 0.0559849,
+   "bar": "2026-11-26 00:00:00+00:00",
+   "close": 0.0564043,
    "entry": false,
    "exit": true,
-   "text": "close 0.05598 vs lower band 0.0556 / middle 0.0556 | RSI 61 | -25.9% vs long average"
+   "text": "close 0.0564 vs lower band 0.05584 / middle 0.05584 | RSI 74 | -25.0% vs long average"
   },
   "AVAX/USD": {
-   "bar": "2026-11-25 00:00:00+00:00",
-   "close": 6.624,
+   "bar": "2026-11-26 00:00:00+00:00",
+   "close": 6.584,
    "entry": false,
    "exit": false,
-   "text": "close 6.624 vs lower band 6.644 / middle 6.644 | RSI 45 | -20.5% vs long average"
+   "text": "close 6.584 vs lower band 6.646 / middle 6.646 | RSI 33 | -20.6% vs long average"
   },
   "LINK/USD": {
-   "bar": "2026-11-25 00:00:00+00:00",
-   "close": 9.0449,
+   "bar": "2026-11-26 00:00:00+00:00",
+   "close": 9.26939,
    "entry": false,
    "exit": true,
-   "text": "close 9.045 vs lower band 8.857 / middle 8.857 | RSI 74 | -16.2% vs long average"
+   "text": "close 9.269 vs lower band 8.992 / middle 8.992 | RSI 88 | -13.9% vs long average"
   },
   "BNB/USD": {
-   "bar": "2026-11-25 00:00:00+00:00",
-   "close": 553.52,
+   "bar": "2026-11-26 00:00:00+00:00",
+   "close": 553.38,
    "entry": false,
-   "exit": true,
-   "text": "close 553.5 vs lower band 552.6 / middle 552.6 | RSI 55 | -17.8% vs long average"
+   "exit": false,
+   "text": "close 553.4 vs lower band 553.8 / middle 553.8 | RSI 54 | -17.5% vs long average"
   }
  },
  "started_at": "2026-11-09T13:26:39.817560+00:00",
- "updated_at": "2026-11-26T20:30:42.541480+00:00",
+ "updated_at": "2026-11-27T03:14:46.404842+00:00",
  "equity": 10000,
  "prices": {
-  "BTC/USD": 60623.9,
-  "ETH/USD": 1701.14,
-  "SOL/USD": 71.31,
-  "XRP/USD": 0.95241,
-  "ADA/USD": 0.150686,
-  "DOGE/USD": 0.0569539,
-  "AVAX/USD": 6.636,
-  "LINK/USD": 9.2575,
-  "BNB/USD": 554.63
+  "BTC/USD": 61486.5,
+  "ETH/USD": 1728.1,
+  "SOL/USD": 72.84,
+  "XRP/USD": 0.96383,
+  "ADA/USD": 0.151394,
+  "DOGE/USD": 0.0577971,
+  "AVAX/USD": 6.733,
+  "LINK/USD": 9.49767,
+  "BNB/USD": 562.41
  },
  "error": null
 }
